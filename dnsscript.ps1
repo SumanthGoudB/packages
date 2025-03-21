@@ -33,10 +33,18 @@ if (!(Test-Path $registryPath)) {
     Write-Host "Registry path does not exist. Adding the entries now." -ForegroundColor Yellow
 	New-item -path "HKLM:\SOFTWARE\Amazon\"
 	Start-sleep -milliseconds 500
-	New-item -path ""HKLM:\SOFTWARE\Amazon\SkyLight\"
+	New-item -path "HKLM:\SOFTWARE\Amazon\SkyLight\"
 	Write-Host "Registry path is added now. proceeding with the modification."
 }
-Else{
+Else{	
+	write-host "Registry exists on the workspace, deleting now" -foregroundcolor Red
+	remove-item -path "HKLM:\SOFTWARE\Amazon\*"
+ 	start-sleep -milliseconds 500
+ 	New-item -path "HKLM:\SOFTWARE\Amazon\"
+	Start-sleep -milliseconds 500
+	New-item -path "HKLM:\SOFTWARE\Amazon\SkyLight\"
+	Write-Host "Registry path is added now. proceeding with the modification."
+     	
 	write-host "Registry path exists. Proceeding with the modification."
 	
 }
